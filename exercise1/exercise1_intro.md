@@ -34,7 +34,7 @@ The base image can be obtained from docker hub.
 1. Install docker (if you don't have it). 
 2. Run: `docker run -it naimdjon/hadoop /start`
 3. You can find hadoop at `/opt/hadoop/latest/`.
-4. Run a sample grep command: `hadoop fs -ls`
+4. Run a sample command, for example list: `hadoop fs -ls`
 
 
 Check the following commands:
