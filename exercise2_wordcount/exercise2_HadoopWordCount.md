@@ -36,7 +36,7 @@ Finally, you need to `copyFromLocal` the (news) collection to the HDFS. The coll
  - removing the numbers
 
 Note:  To share a folder between your docker host and the container, you can start the container using the `-v` option:
- `docker run -it -v  /<your_local_folder>/:/hadoop naimdjon/hadoop`. 
+ `docker run -v /<your_local_folder>/:/hadoop -it naimdjon/hadoop /start`. 
   
    The folder will appear as `/hadoop` in your container.
 
