@@ -4,7 +4,7 @@
 We are going to use the New York Stock Exchange (NYSE) dataset in this exercise. This dataset includes the daily open, close, high and low volume on the NYSE, as well as stock dividends. The data fields available include date, stock symbol, stock open and close prices, highs, lows, volume, and adjusted closing price. The dataset includes data from NYSE from 1970 to 2010. We are going to be doing a small-scale analysis and focus on daily prices and dividends of stocks for symbols starting with `A`&#185;. 
 
 #### Dataset preparation.
-In the text of the exercise it is assumed that you have the dataset files (`NYSE_dividends_A.csv`, `NYSE_daily_prices_A.csv`) in the (docker) volume mapped to `/ma120/exercise4_pig`. Change this path if you have different configuration accordingly.
+In the text of the exercise it is assumed that you have the dataset files (`NYSE_dividends_A.csv`, `NYSE_daily_prices_A.csv`) in the folder `/root`. The docker images already contains these files.
 
 #### Tasks.
 Pig is already installed in the docker image so you can run your experiments there. At the time of writing, the installed version is the latest, i.e. `0.16.0`. Start the pig with `pig -x local`.
@@ -13,7 +13,7 @@ If you wish to experiment with it on your machine, you can install it following 
 
 * Load subset for stocks:
 ```
-       STOCK_A = LOAD '/ma120/exercise4_pig/NYSE_daily_prices_A.csv' using PigStorage(',');
+       STOCK_A = LOAD '/root/NYSE_daily_prices_A.csv' using PigStorage(',');
 ```
 Check the `STOCK_A`:
 ```
@@ -22,7 +22,7 @@ Check the `STOCK_A`:
 * Check the schema. What did you get? Why does Pig tell us that the schema is unknown?
 * Load it with a schema.
 ```
-       STOCK_A = LOAD '/ma120/exercise4_pig/NYSE_daily_prices_A.csv' using PigStorage(',') AS (exchange:chararray, symbol:chararray, date:chararray, open:float, high:float, low:float, close:float, volume:int, adj_close:float); 
+       STOCK_A = LOAD '/root/NYSE_daily_prices_A.csv' using PigStorage(',') AS (exchange:chararray, symbol:chararray, date:chararray, open:float, high:float, low:float, close:float, volume:int, adj_close:float); 
 ```
 Check the `STOCK_A`:       
 
@@ -50,7 +50,7 @@ Now, check the schema:
 ```
 * Performing a join with dividents data. First we load dividents for `A`.
 ```
-       DIV_A = LOAD '/ma120/exercise4_pig/NYSE_dividends_A.csv' using PigStorage(',') AS (exchange:chararray, symbol:chararray, date:chararray, dividend:float);
+       DIV_A = LOAD '/root/NYSE_dividends_A.csv' using PigStorage(',') AS (exchange:chararray, symbol:chararray, date:chararray, dividend:float);
 ```
 * Join two relations `STOCK_A` and `DIV_A`:
 ```
